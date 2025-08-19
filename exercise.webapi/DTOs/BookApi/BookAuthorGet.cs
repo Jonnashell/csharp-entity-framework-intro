@@ -1,6 +1,6 @@
-﻿namespace exercise.webapi.DTOs
+﻿namespace exercise.webapi.DTOs.BookApi
 {
-    public class AuthorGet
+    public class BookAuthorGet
     {
         public int Id { get; set; }
         public string FirstName { get; set; }

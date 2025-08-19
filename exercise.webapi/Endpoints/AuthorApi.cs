@@ -1,4 +1,6 @@
 ﻿using exercise.webapi.DTOs;
+using exercise.webapi.DTOs.AuthorApi;
+using exercise.webapi.DTOs.BookApi;
 using exercise.webapi.Models;
 using exercise.webapi.Repository;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +13,7 @@ namespace exercise.webapi.Endpoints
         public static void ConfigureAuthorsApi(this WebApplication app)
         {
             app.MapGet("/authors/{id}", GetAuthorById);
+            app.MapGet("/authors", GetAuthors);
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -22,8 +25,21 @@ namespace exercise.webapi.Endpoints
             {
                 return TypedResults.NotFound(new { Error = $"No author found with id '{id}'" });
             }
+            
+            return TypedResults.Ok(entity.ToDTO());
+        }
 
-            return TypedResults.Ok(entity);
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public static async Task<IResult> GetAuthors(IAuthorRepository authorRepository)
+        {
+            var entities = await authorRepository.GetAllAuthors();
+            List<AuthorGet> result = new List<AuthorGet>();
+            foreach (var entity in entities)
+            {
+                result.Add(entity.ToDTO());
+            }
+
+            return TypedResults.Ok(result);
         }
     }
 }

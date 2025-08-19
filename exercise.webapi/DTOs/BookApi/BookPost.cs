@@ -1,6 +1,6 @@
 ﻿using exercise.webapi.Models;
 
-namespace exercise.webapi.DTOs
+namespace exercise.webapi.DTOs.BookApi
 {
     public class BookPost
     {

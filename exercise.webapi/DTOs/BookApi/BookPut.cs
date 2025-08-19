@@ -1,4 +1,4 @@
-﻿namespace exercise.webapi.DTOs
+﻿namespace exercise.webapi.DTOs.BookApi
 {
     public class BookPut
     {

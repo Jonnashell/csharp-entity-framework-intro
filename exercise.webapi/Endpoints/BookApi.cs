@@ -1,4 +1,4 @@
-﻿using exercise.webapi.DTOs;
+﻿using exercise.webapi.DTOs.BookApi;
 using exercise.webapi.Models;
 using exercise.webapi.Repository;
 using Microsoft.AspNetCore.Mvc;
