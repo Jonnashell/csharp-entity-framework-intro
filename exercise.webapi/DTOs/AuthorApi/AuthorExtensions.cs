@@ -2,7 +2,7 @@
 
 namespace exercise.webapi.DTOs.AuthorApi
 {
-    public static class AuthorExtensions
+    public static class PublisherExtensions
     {
         public static AuthorGet ToDTO(this Author entity)
         {
@@ -14,7 +14,7 @@ namespace exercise.webapi.DTOs.AuthorApi
 
             foreach (var book in entity.Books)
             {
-                AuthorBookGet authorBook = new AuthorBookGet();
+                BookExtGet authorBook = new BookExtGet();
                 authorBook.Id = book.Id;
                 authorBook.Title = book.Title;
                 author.Books.Add(authorBook);

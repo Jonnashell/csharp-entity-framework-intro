@@ -3,6 +3,7 @@
     public class BookGet
     {
         public string Title { get; set; }
-        public BookAuthorGet Author { get; set; }
+        public AuthorExtGet Author { get; set; }
+        public PublisherExtGet Publisher { get; set; }
     }
 }

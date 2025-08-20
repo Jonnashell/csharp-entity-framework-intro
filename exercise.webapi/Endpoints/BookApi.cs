@@ -43,10 +43,16 @@ namespace exercise.webapi.Endpoints
 
             return TypedResults.Ok(entity.ToDTO());
         }
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public static async Task<IResult> Update(IBookRepository bookRepository, IAuthorRepository authorRepository, int id, int authorId)
         {
-            // Add NotFound Error
             Book entity = await bookRepository.GetBook(id);
+            if (entity is null)
+            {
+                return TypedResults.NotFound(new { Error = $"No book found with id '{id}'" });
+            }
             Author author = await authorRepository.GetAuthor(authorId);
 
             entity.AuthorId = authorId;
@@ -55,12 +61,19 @@ namespace exercise.webapi.Endpoints
             await bookRepository.Update(id, entity);
             return TypedResults.Ok(entity.ToDTO());
         }
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public static async Task<IResult> Delete(IBookRepository bookRepository, int id)
         {
-            // Add NotFound Error
             var entity = await bookRepository.Delete(id);
+            if (entity is null)
+            {
+                return TypedResults.NotFound(new { Error = $"No book found with id '{id}'" });
+            }
             return TypedResults.Ok(entity.ToDTO());
         }
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public static async Task<IResult> Create(IBookRepository bookRepository, BookPost model)
         {
             Book book = new Book();

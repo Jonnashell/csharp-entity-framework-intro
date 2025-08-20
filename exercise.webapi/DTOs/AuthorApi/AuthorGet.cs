@@ -8,6 +8,6 @@ namespace exercise.webapi.DTOs.AuthorApi
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
-        public ICollection<AuthorBookGet> Books { get; set; } = new List<AuthorBookGet>();
+        public ICollection<BookExtGet> Books { get; set; } = new List<BookExtGet>();
     }
 }
