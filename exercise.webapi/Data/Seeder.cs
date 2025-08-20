@@ -84,9 +84,9 @@ namespace exercise.webapi.Data
         public Seeder()
         {
 
-            Random authorRandom = new Random();
-            Random bookRandom = new Random();
-            Random publisherRandom = new Random();
+            Random authorRandom = new Random(1);
+            Random bookRandom = new Random(2);
+            Random publisherRandom = new Random(3);
 
 
 
